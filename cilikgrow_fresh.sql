@@ -1,22 +1,3 @@
--- =====================================================================
--- CilikGrow - Kindergarten Student Progress Management System
--- Tadika Perpaduan Pedas | CSC2854 Final Project
--- FRESH database script: drops and recreates everything, NEW passwords,
--- attendance and progress records start EMPTY (safe to re-run)
--- Built from the phpMyAdmin export of 6 Nov 2026 (MariaDB 10.4.32)
---
--- Changes from the raw export:
---   * Removed unused legacy columns (students.student_code, students.mykid_no,
---     progress_records.term/*_score/notes/entry_date). The PHP code only uses
---     mykid, *_grade, teacher_notes and academic_term.
---   * UNIQUE(mykid) on students.
---   * UNIQUE(student_id, academic_term) on progress_records (one evaluation
---     per student per term, enforced by the database as well as by PHP).
---   * Foreign key users.student_id -> students.student_id (ON DELETE SET NULL),
---     as documented in DEF-01. It was missing from the export.
--- Demo accounts and passwords: see SETUP.md / Test Report Table 12.
--- =====================================================================
-
 CREATE DATABASE IF NOT EXISTS `cilikgrow_db` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `cilikgrow_db`;
 
