@@ -1,0 +1,24 @@
+services:
+  web:
+    build: .
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/var/www/html
+    environment:
+      DB_HOST: db
+      DB_PASS: rootpassword
+    depends_on:
+      - db
+
+  db:
+    image: mariadb:10.4
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: cilikgrow_db
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./cilikgrow_fresh.sql:/docker-entrypoint-initdb.d/init.sql
+
+volumes:
+  db_data:
